@@ -8,9 +8,26 @@
     <link rel="stylesheet" href="/screen.css" />
   </head>
   <body>
-    <h1>Deck of Cards</h1>
-    <section class="selected-card"></section>
-    <button>Gimme a card</button>
-    <script src="/main.js" charset="utf-8"></script>
+    <h1>War!</h1>
+
+    <section class="play-area">
+      <section class="player player-area">
+        <h2 class="player-title">You</h2>
+        <p class="current-card">Deal for a card</p>
+        <p class="hand-winner-area">&#160;</p>
+        <p class="cards-in-hand">26</p>
+        <p class="cards-in-hand-text">Cards in Hand</p>
+      </section>
+      <section class="computer player-area">
+        <h2 class="player-title">Computer</h2>
+        <p class="current-card">Deal for a card</p>
+        <p class="hand-winner-area">&#160;</p>
+        <p class="cards-in-hand">26</p>
+        <p class="cards-in-hand-text">Cards in Hand</p>
+      </section>
+    </section>
+
+    <button>Deal</button>
+    <script src="/advancedmode.js" charset="utf-8"></script>
   </body>
 </html>

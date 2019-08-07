@@ -14,3 +14,15 @@ body {
   align-items: center;
   flex-direction: column;
 }
+
+.play-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-area {
+  margin: 2rem;
+  text-align: center;
+  width: 50%;
+}
