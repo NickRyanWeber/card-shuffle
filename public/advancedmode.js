@@ -20,6 +20,9 @@ const playerHandDisplay = document.querySelector('.player > .current-card')
 const computerHandDisplay = document.querySelector('.computer > .current-card')
 let middle
 
+let playerOffset = 0
+let computerOffset = 0
+
 const createDealSplitDeck = () => {
   for (let i = 0; i < suits.length; i++) {
     for (let j = 0; j < values.length; j++) {
@@ -39,18 +42,21 @@ const createDealSplitDeck = () => {
     deck[endSelector] = deck[randomNumber]
     deck[randomNumber] = holdVariable
   }
-  console.log(deck)
+  // console.log(deck)
   middle = deck.length / 2
-  console.log(middle)
+  // console.log(middle)
+  let playerOffset = middle
+  let computerOffset = ++middle
+  // console.log(deck[playerOffset], deck[computerOffset])
 }
 
 const dealCards = () => {
-  let playerOffset = middle
-  let computerOffset = ++middle
-  // console.log(playerOffset, computerOffset)
+  if (deck[playerOffset][1] > deck[computerOffset][1]) {
+    // console.log('Player Wins')
+  } else {
+    // console.log('Computer Wins')
+  }
 }
-
-// player.push(deck.pop())
 
 document.addEventListener('DOMContentLoaded', createDealSplitDeck)
 document.querySelector('button').addEventListener('click', dealCards)
