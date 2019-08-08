@@ -14,14 +14,16 @@ const values = [
   ['Queen', 12],
   ['King', 13]
 ]
-
 let deck = []
+let holdVariable = ''
+let holdArray = []
+
 const playerHandDisplay = document.querySelector('.player > .current-card')
 const computerHandDisplay = document.querySelector('.computer > .current-card')
-let middle
 
-let playerOffset = 0
-let computerOffset = 0
+let playerOffset
+let computerOffset
+let arrayOffset //will need for DRAWS
 
 const createDealSplitDeck = () => {
   for (let i = 0; i < suits.length; i++) {
@@ -33,7 +35,6 @@ const createDealSplitDeck = () => {
   }
 
   const arrayLength = deck.length
-  let holdVariable = ''
 
   for (let endSelector = arrayLength - 1; endSelector > 0; endSelector--) {
     const randomNumber = Math.floor(Math.random() * arrayLength)
@@ -42,20 +43,52 @@ const createDealSplitDeck = () => {
     deck[endSelector] = deck[randomNumber]
     deck[randomNumber] = holdVariable
   }
-  // console.log(deck)
-  middle = deck.length / 2
-  // console.log(middle)
-  let playerOffset = middle
-  let computerOffset = ++middle
-  // console.log(deck[playerOffset], deck[computerOffset])
+
+  playerOffset = deck.length / 2 - 1
+  computerOffset = playerOffset + 1
+  arrayOffset = computerOffset - playerOffset + 1
+  console.log(deck)
 }
 
 const dealCards = () => {
+  console.log(deck)
+  console.log(deck[playerOffset], deck[computerOffset])
   if (deck[playerOffset][1] > deck[computerOffset][1]) {
-    // console.log('Player Wins')
+    playerWin()
+  } else if (deck[playerOffset][1] < deck[computerOffset][1]) {
+    computerWin()
   } else {
-    // console.log('Computer Wins')
+    draw()
   }
+  console.log(deck)
+}
+
+const playerWin = () => {
+  console.log('player win')
+  holdArray = deck.splice(playerOffset, arrayOffset)
+  holdArray.forEach(element => {
+    deck.unshift(element)
+  })
+  playerOffset++
+  computerOffset--
+  arrayOffset = computerOffset - playerOffset + 1
+}
+
+const computerWin = () => {
+  console.log('computer win')
+  holdArray = deck.splice(playerOffset, arrayOffset)
+  holdArray.forEach(element => {
+    deck.push(element)
+  })
+  playerOffset--
+  computerOffset++
+  arrayOffset = computerOffset - playerOffset + 1
+}
+
+const draw = () => {
+  console.log('draw')
+  computerOffset++
+  playerOffset--
 }
 
 document.addEventListener('DOMContentLoaded', createDealSplitDeck)
