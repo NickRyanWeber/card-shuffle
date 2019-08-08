@@ -1,6 +1,6 @@
-const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
+const suits = ['Clubs'] // for testing
+// const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
 const values = [
-  ['Ace', 14],
   ['2', 2],
   ['3', 3],
   ['4', 4],
@@ -36,23 +36,26 @@ const createDealSplitDeck = () => {
 
   const arrayLength = deck.length
 
-  for (let endSelector = arrayLength - 1; endSelector > 0; endSelector--) {
-    const randomNumber = Math.floor(Math.random() * arrayLength)
-    // console.log(deck[randomNumber])
-    holdVariable = deck[endSelector]
-    deck[endSelector] = deck[randomNumber]
-    deck[randomNumber] = holdVariable
-  }
+  // shuffle
+  // for (let endSelector = arrayLength - 1; endSelector > 0; endSelector--) {
+  //   const randomNumber = Math.floor(Math.random() * arrayLength)
+  //   // console.log(deck[randomNumber])
+  //   holdVariable = deck[endSelector]
+  //   deck[endSelector] = deck[randomNumber]
+  //   deck[randomNumber] = holdVariable
+  // }
 
   playerOffset = deck.length / 2 - 1
   computerOffset = playerOffset + 1
   arrayOffset = computerOffset - playerOffset + 1
-  console.log(deck)
+  // console.log(deck)
 }
 
 const dealCards = () => {
   console.log(deck)
-  console.log(deck[playerOffset], deck[computerOffset])
+  console.log(playerOffset, computerOffset)
+  console.log(deck[5], deck[6])
+  console.log(playerOffset, computerOffset)
   if (deck[playerOffset][1] > deck[computerOffset][1]) {
     playerWin()
   } else if (deck[playerOffset][1] < deck[computerOffset][1]) {
@@ -80,15 +83,15 @@ const computerWin = () => {
   holdArray.forEach(element => {
     deck.push(element)
   })
-  playerOffset--
-  computerOffset++
+  playerOffset++
+  computerOffset--
   arrayOffset = computerOffset - playerOffset + 1
 }
 
 const draw = () => {
   console.log('draw')
-  computerOffset++
-  playerOffset--
+  computerOffset--
+  playerOffset++
 }
 
 document.addEventListener('DOMContentLoaded', createDealSplitDeck)
