@@ -58,8 +58,10 @@ const createDealSplitDeck = () => {
 
 const dealCards = () => {
   console.log(
-    `Player Offset = ${playerOffset} & Computer Offset = ${computerOffset}`
+    `Player = ${deck[playerOffset][1]} & Computer = ${deck[computerOffset][1]}`
   )
+  console.log(deck)
+
   playerHandDisplay.textContent = deck[playerOffset][0]
   computerHandDisplay.textContent = deck[computerOffset][0]
 
@@ -88,6 +90,10 @@ const playerWin = () => {
   computerOffset++
   arrayOffset = computerOffset - playerOffset + 1
   updateCardCount()
+  checkWin(
+    (playerCardCount.textContent = deck.length - playerOffset - 1),
+    'Player'
+  )
 }
 
 const computerWin = () => {
@@ -102,13 +108,17 @@ const computerWin = () => {
   computerOffset--
   arrayOffset = computerOffset - playerOffset + 1
   updateCardCount()
-  checkWin((computerCardCount.textContent = deck.length - playerOffset - 1))
+  checkWin(
+    (computerCardCount.textContent = deck.length - playerOffset - 1),
+    'Computer'
+  )
 }
 
 const draw = () => {
   console.log('draw')
   computerOffset--
   playerOffset++
+  arrayOffset++
 }
 
 const updateCardCount = () => {
